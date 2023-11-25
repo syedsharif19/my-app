@@ -1,32 +1,36 @@
-import React, { useContext } from 'react'
-import noteContext from '../context/notes/noteContext';
 
+
+
+
+import React, { useContext } from 'react';
+import noteContext from '../context/notes/noteContext';
+import { Card, Button } from 'react-bootstrap';
 
 export const NoteItem = (props) => {
-    const { note, updatenote , showAlert } = props;
-    // here we take a prop of update note which is exported or proped by notes.js file 
+    const { note, updatenote, showAlert } = props;
     const context = useContext(noteContext);
     const { deleteNote } = context;
 
-    const delete_note=()=>{
-        
-        if(window.confirm("Want to delete ?")){
+    const delete_note = () => {
+        if (window.confirm("Want to delete?")) {
             deleteNote(note._id);
-            showAlert("Succesfuly deleted","success");
+            showAlert("Successfully deleted", "success");
         }
-    }
+    };
 
     return (
-        <div className="card my-5 mx-1 border rounded" style={{ width: '18rem' }}>
-            <div className="card-body">
-                <h5 className="card-title">{note.title}</h5>
-                <h6 className="card-subtitle mb-2 text-muted">{note.description}</h6>
-                <p className="card-text">{note.tag}</p>
-                <i className="fa-solid fa-trash mx-2" onClick={() => {delete_note()}}></i>
-                <i className="fa-solid fa-pen-to-square mx-2" onClick={()=>{updatenote(note)}}></i>
-            </div>
-        </div>
-
-
-    )
-}
+        <Card className="my-5 mx-1 border rounded" style={{ width: '18rem' }}>
+            <Card.Body>
+                <Card.Title>{note.title}</Card.Title>
+                <Card.Subtitle className="mb-2 text-muted">{note.description}</Card.Subtitle>
+                <Card.Text>{note.tag}</Card.Text>
+                <Button variant="danger" className="mx-2" onClick={delete_note}>
+                    Delete
+                </Button>
+                <Button variant="primary" className="mx-2" onClick={() => updatenote(note)}>
+                    Update
+                </Button>
+            </Card.Body>
+        </Card>
+    );
+};

@@ -1,0 +1,32 @@
+
+
+
+.glass-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin-left: 200px;
+}
+
+.glass-form {
+  background: rgba(255, 255, 255, 0.5); /* Adjust the opacity to your preference */
+  padding: 20px;
+  border-radius: 10px;
+  backdrop-filter: blur(10px); /* Apply the glass effect */
+  -webkit-backdrop-filter: blur(10px); /* For compatibility with some browsers */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 600px;
+  /* padding: 30px; */
+}
+
+.glass-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+@media (min-width: 100px), (min-height: 951px) {
+  .glass-container { margin-left: 0px; 
+    width: 300px;
+         
+  } }

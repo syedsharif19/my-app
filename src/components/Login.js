@@ -1,18 +1,20 @@
-import React, { useState } from 'react'
-// used to redirect to home page 
-import { useNavigate } from 'react-router-dom'
+
+
+
+
+import React, { useState } from 'react';
+import { Form, Button, FormGroup, FormLabel, FormControl, FormText, Container } from 'react-bootstrap';
+import './login.css'; // CSS for styling
+
+import { useNavigate } from 'react-router-dom';
 
 const Login = (props) => {
-
-  const [credentials, setcredentials] = useState({ email: "", password: "" })
-
-  // used to redirect to home page 
-  let navigate = useNavigate();
-
+  const [credentials, setCredentials] = useState({ email: '', password: '' });
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:5000/api/auth/login", {
+    const response = await fetch("http://localhost:3000/api/auth/login", {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
@@ -20,41 +22,64 @@ const Login = (props) => {
       body: JSON.stringify({ email: credentials.email, password: credentials.password })
     });
     const json = await response.json();
-   
+
     if (json.success) {
-      // save the auth token into local storage and redirect
       localStorage.setItem('token', json.authtoken);
-      // used to redirect to home page 
       navigate('/');
-      props.showAlert("successful login ","success")
+      props.showAlert("Successful login", "success");
+    } else {
+      props.showAlert("Invalid login information", "danger");
     }
-    else {
-      props.showAlert("Invalid login information","danger")
-    }
-  }
+  };
 
+  const onChange = (e) => {
+    setCredentials({ ...credentials, [e.target.name]: e.target.value });
+  };
 
-  const onchange = (e) => {
-    setcredentials({ ...credentials, [e.target.name]: e.target.value })
-  }
+  const myStyle={
+    // backgroundImage:"url('https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')",
+    height:"100vh",
+    // marginTop:"-50px",
+    width:"100vw",
+    // fontSize:"50px",
+    backgroundSize:"cover",
+    backgroundRepeat:"np-repeat",
+    marginLeft:"-23px",
+
+  };
 
   return (
-    <div className='my-5'>
-      <h2>Login to continue to I-NoteBook</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group my-3">
-          <label htmlFor="email">Email address</label>
-          <input type="email" className="form-control" id="email" onChange={onchange} value={credentials.email} name='email' placeholder="Enter email" />
-          <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
-        </div>
-        <div className="form-group my-3">
-          <label htmlFor="password">Password</label>
-          <input type="password" className="form-control" onChange={onchange} value={credentials.password} name='password' id="exampleInputPassword1" placeholder="Password" />
-        </div>
-        <button type="submit" className="btn btn-primary" >Login</button>
-      </form>
-    </div>
-  )
-}
+    <Container fluid className="glassmorphism-container" style={myStyle}>
+      <div className="glassmorphism-form">
+        <h2>Login to continue  I-CloudBook</h2>
+        <Form onSubmit={handleSubmit}>
+          <FormGroup controlId="email" className="my-3">
+            <FormLabel>Email address</FormLabel>
+            <FormControl
+              type="email"
+              placeholder="Enter email"
+              onChange={onChange}
+              value={credentials.email}
+              name="email"
+            />
+            <FormText className="text-muted">We'll never share your email with anyone else.</FormText>
+          </FormGroup>
+          <FormGroup controlId="password" className="my-3">
+            <FormLabel>Password</FormLabel>
+            <FormControl
+              type="password"
+              placeholder="Password"
+              onChange={onChange}
+              value={credentials.password}
+              name="password"
+            />
+            <FormText className="text-muted">End to end Encrypted.</FormText>
+          </FormGroup>
+          <Button type="submit" className="btn btn-primary">Login</Button>
+        </Form>
+      </div>
+    </Container>
+  );
+};
 
-export default Login
+export default Login;
