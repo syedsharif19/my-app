@@ -36,3 +36,22 @@
     transform: rotate(360deg);
   }
 }
+
+#navli:hover{
+/* background-color: azure; */
+color: black;
+border-radius: 10px;
+opacity: 0.1px;
+transition: 1s;
+transition-duration: 1s;
+
+}
+
+/* body > #root > div {
+  height: 100vh;
+} */
+
+
+
+
+

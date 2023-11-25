@@ -1,5 +1,8 @@
+
 import React,{useState} from 'react'
 import { useNavigate } from 'react-router-dom'
+// import './signup.css'
+import { FormGroup,FormLabel,FormControl,FormText,Button,Container,Form } from 'react-bootstrap';
 
 
 const Signup = (props) => {
@@ -11,7 +14,7 @@ const Signup = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:5000/api/auth/createuser", {
+    const response = await fetch("http://localhost:3000/api/auth/createuser", {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
@@ -37,37 +40,103 @@ const Signup = (props) => {
   const onchange = (e) => {
     setcredentials({ ...credentials, [e.target.name]: e.target.value })
   }
+  const myStyle={
+    // // // backgroundImage:"url('https://images.pexels.com/photos/1647962/pexels-photo-1647962.jpeg?auto=compress&cs=tinysrgb&w=600')",
+    // height:"100vh",
+    // // marginTop:"-45px",
+    // width:"100%",
+    // // // fontSize:"50px",
+    // backgroundSize:"cover",
+    // backgroundRepeat:"np-repeat",
+    // marginLeft:"-23px",
+    // marginLeft:"300px",
+    // width:"100%",
+    // height:"100%",
+    // / backgroundImage:"url('https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')",
+    height:"100vh",
+    // marginTop:"-50px",
+    width:"100vw",
+    // fontSize:"50px",
+    backgroundSize:"cover",
+    backgroundRepeat:"np-repeat",
+    marginLeft:"-23px",
 
+
+  }
   return (
-       <div className='container my-5'>
-        <h2>Create an account to use I-NoteBook</h2>
-      <form onSubmit={handleSubmit}>
-
-      <div className="form-group my-3">
-          <label htmlFor="name">User Name</label>
-          <input type="text" className="form-control" id="name" onChange={onchange} required  name='name' placeholder="Enter UserName" />
-        </div>
-
-        <div className="form-group my-3">
-          <label htmlFor="email">Email address</label>
-          <input type="email" className="form-control" id="email" onChange={onchange} required  name='email' placeholder="Enter email" />
-          <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
-        </div>
-
-        <div className="form-group my-3">
-          <label htmlFor="password">Password</label>
-          <input type="password" className="form-control" onChange={onchange} required minLength={5}   name='password' id="exampleInputPassword1" placeholder="Password" />
-        </div>
-
-        <div className="form-group my-3">
-          <label htmlFor="cpassword">Confirm Password</label>
-          <input type="password" className="form-control" onChange={onchange} required minLength={5}   name='cpassword' id="exampleInputPassword1" placeholder="Password" />
-        </div>
-
-        <button type="submit" className="btn btn-primary" >Submit</button>
-      </form>
+    <div className="maincontainer" >
+    <Container fluid className="glassmorphism-container " style={myStyle}>
+    <div className="glassmorphism-form">
+      <h2>Create an account to use I-CloudBook</h2>
+      <Form onSubmit={handleSubmit}>
+      <FormGroup controlId="text" className="my-3">
+          <FormLabel>Name</FormLabel>
+          <FormControl
+            type="text"
+            placeholder="Name"
+            id='name'
+            onChange={onchange}
+            required
+            value={credentials.name}
+            name="name"
+          />
+          <FormText className="text-muted"></FormText>
+        </FormGroup>
+        <FormGroup controlId="email" className="my-3">
+          <FormLabel>Email address</FormLabel>
+          <FormControl
+            type="email"
+            id='email'
+            placeholder="Enter email"
+            onChange={onchange}
+            required
+            value={credentials.email}
+            name="email"
+          />
+          <FormText className="text-muted">We'll never share your email with anyone else.</FormText>
+        </FormGroup>
+        <FormGroup controlId="password" className="my-3">
+          <FormLabel>Password</FormLabel>
+          <FormControl
+            type="password"
+            id='exampleInputPassword1'
+            placeholder="Password"
+            onChange={onchange}
+            required minLength={5 }  
+            value={credentials.password}
+            name="password"
+          />
+          <FormText className="text-muted">End to end Encrypted.</FormText>
+        </FormGroup>
+        <FormGroup controlId="password" className="my-3">
+          <FormLabel> Confirm Password</FormLabel>
+          <FormControl
+            type="password"
+            id='exampleInputPassword1'
+            placeholder=" confirm Password"
+            onChange={onchange}
+            required minLength={5 }  
+            value={credentials.cpassword}
+            name="cpassword"
+          />
+          <FormText className="text-muted">End to end Encrypted.</FormText>
+        </FormGroup>
+        <Button type="submit" className="btn btn-primary" >Submit</Button>
+      </Form>
     </div>
-  )
-}
+  </Container>
+  
 
-export default Signup;
+
+  
+  </div>
+    );
+  };
+  
+  export default Signup;
+  
+
+
+   
+
+

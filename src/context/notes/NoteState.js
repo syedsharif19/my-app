@@ -1,9 +1,9 @@
-import { json } from "react-router-dom";
+// import { json } from "react-router-dom";
 import NoteContext from "./noteContext";
 import { useState } from "react";
 
 function NoteState(props) {
-  const host = "http://localhost:5000";
+  const host = "http://localhost:3000";
   const notesInitial = []
   const [notes, setNotes] = useState(notesInitial)
 
