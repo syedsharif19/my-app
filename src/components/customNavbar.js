@@ -15,6 +15,9 @@ function CustomNavbar() {
     localStorage.removeItem('token')
     navigate('/login')
   };
+   const guest=()=>{
+    alert(" Login With \n Mail: guest1@gmail.com \n password: guest123")
+  }
 const myStyle={
   width:"100vw",
   
@@ -31,9 +34,9 @@ const myStyle={
             <Nav.Link id='navli' className={location.pathname === "/" ? "active" : ""} as={Link} to="/">
               Home 
             </Nav.Link>
-            <Nav.Link id='navli' className={location.pathname === "/about"  ? "active" : ""} as={Link} to="/about">
+           /* <Nav.Link id='navli' className={location.pathname === "/about"  ? "active" : ""} as={Link} to="/about">
               About
-            </Nav.Link>
+            </Nav.Link> */
             <Nav.Link id='navli' className={location.pathname === "/instructions" ? "active" : ""} as={Link} to="/instructions">
               Instrutions
             </Nav.Link>
@@ -49,6 +52,9 @@ const myStyle={
               </Link>
               <Link id='navlibtn' className="btn btn-primary mx-2" to='/signup' role='button'>
                 Signup
+              </Link>
+            <Link id='navlibtn' className="btn btn-primary mx-2" onClick={guest} role='button'>
+                GuestMode
               </Link>
             </Nav>
           ) : (
