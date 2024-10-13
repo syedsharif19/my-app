@@ -14,7 +14,8 @@ const Login = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:3000/api/auth/login", {
+    const response = await fetch("https://backend22.netlify.app//api/auth/login", {
+    // const response = await fetch("https://backend-yccy.onrender.com/api/auth/login", {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
@@ -24,7 +25,7 @@ const Login = (props) => {
     const json = await response.json();
 
     if (json.success) {
-      localStorage.setItem('token', json.authtoken);
+      // localStorage.setItem('token', json.authtoken);
       navigate('/');
       props.showAlert("Successful login", "success");
     } else {

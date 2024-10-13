@@ -6,7 +6,7 @@ const Footer = () => {
     marginBottom:"1px",
   }
   return (
-    <footer className="bg-black text-light p-1 mb-1" style={myStyle}>
+    <footer className="bg-dark text-light p-1 mb-1" style={myStyle}>
       <Container>
           <Col>
             <p className="text-center pt-1">© {new Date().getFullYear()} Design and Developed By Syed Sharif. All Rights Reserved.</p>

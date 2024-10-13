@@ -3,7 +3,8 @@ import NoteContext from "./noteContext";
 import { useState } from "react";
 
 function NoteState(props) {
-  const host = "http://localhost:3000";
+  // const host = "https://localhost:3000";
+  const host = "https://backend22.netlify.app/";
   const notesInitial = []
   const [notes, setNotes] = useState(notesInitial)
 
